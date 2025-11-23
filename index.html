@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Juego del Impostor</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+    <!-- Pantalla Principal -->
+    <div class="screen" id="pantalla-principal">
+        <h1 class="titulo-app">Juego del Impostor</h1>
+        <div class="main-menu">
+            <div class="card opcion" onclick="mostrarPantalla('local')">Crear sala local</div>
+            <div class="card opcion" onclick="mostrarPantalla('multijugador')">Multijugador</div>
+        </div>
+    </div>
+
+    <!-- Pantalla Multijugador -->
+    <div class="screen hidden" id="pantalla-multijugador">
+        <h2 class="no-disponible">No disponible aún</h2>
+        <button class="btn-atras" onclick="volverPrincipal()">Atrás</button>
+    </div>
+
+    <!-- Pantalla Configuración Local -->
+    <div class="screen hidden" id="pantalla-local">
+        <button class="btn-atras" onclick="volverPrincipal()">Atrás</button>
+        <h2>Crear sala local</h2>
+        <div class="configuracion">
+            <label for="cantidadJugadores">Cantidad de jugadores (3-30):</label>
+            <input type="number" id="cantidadJugadores" min="3" max="30" value="4">
+        </div>
+        <div class="row">
+            <button onclick="irNombres()">Siguiente</button>
+        </div>
+    </div>
+
+    <!-- Pantalla Nombres -->
+    <div class="screen hidden" id="pantalla-nombres">
+        <button class="btn-atras" onclick="volverLocal()">Atrás</button>
+        <h2>Nombres de jugadores</h2>
+        <div id="contenedorNombres"></div>
+        <div class="row">
+            <button onclick="irCategoria()">Siguiente</button>
+        </div>
+    </div>
+
+    <!-- Pantalla Categorías -->
+    <div class="screen hidden" id="pantalla-categorias">
+        <button class="btn-atras" onclick="volverNombres()">Atrás</button>
+        <h2>Elige una categoría</h2>
+        <div class="categorias">
+            <div class="categoria" onclick="seleccionarCategoria('objetos', this)">Objetos</div>
+            <div class="categoria" onclick="seleccionarCategoria('animales', this)">Animales</div>
+            <div class="categoria" onclick="seleccionarCategoria('futbolistas', this)">Futbolistas</div>
+            <div class="categoria" onclick="seleccionarCategoria('paises', this)">Países</div>
+            <div class="categoria" onclick="seleccionarCategoria('cantantes', this)">Cantantes</div>
+        </div>
+        <div class="row">
+            <button id="btnCategoria" onclick="irImpostores()" disabled>Siguiente</button>
+        </div>
+    </div>
+
+
+    <!-- Pantalla Impostores -->
+    <div class="screen hidden" id="pantalla-impostores">
+        <button class="btn-atras" onclick="volverCategoria()">Atrás</button>
+        <h2>Cantidad de impostores</h2>
+        <div class="configuracion">
+            <label for="cantidadImpostores">Impostores (1-<span id="maxImpostores">1</span>):</label>
+            <input type="number" id="cantidadImpostores" min="1" value="1">
+        </div>
+        <div class="row">
+            <button onclick="iniciarJuego()">Siguiente</button>
+        </div>
+    </div>
+
+    <!-- Pantalla Ver -->
+    <div class="screen hidden" id="pantalla-ver">
+        <h2 id="tituloJugador"></h2>
+        <div class="row">
+            <button onclick="mostrarPalabra()">Ver</button>
+            <button onclick="siguienteJugador()">Siguiente jugador</button>
+        </div>
+    </div>
+
+    <!-- Pantalla Palabra -->
+    <div class="screen hidden" id="pantalla-palabra">
+        <h2 id="textoPalabra"></h2>
+        <div class="row">
+            <button onclick="siguienteJugador()">Siguiente jugador</button>
+        </div>
+    </div>
+
+    <!-- Pantalla Jugar -->
+    <div class="screen hidden" id="pantalla-jugar">
+        <h2>Todos listos</h2>
+        <div class="row">
+            <button onclick="mostrarRonda()">JUGAR</button>
+        </div>
+    </div>
+
+    <!-- Pantalla Ronda -->
+    <div class="screen hidden" id="pantalla-ronda">
+        <h2>Ronda en juego</h2>
+        <div class="row">
+            <button onclick="revelarImpostor()">Impostor</button>
+            <button onclick="volverAJugar()">Volver a jugar</button>
+            <button onclick="volverPrincipal()">Volver al menú</button>
+            <button onclick="irConfiguracionSala()">Configuración de la sala</button>
+        </div>
+    </div>
+
+    <!-- Pantalla Impostor -->
+    <div class="screen hidden" id="pantalla-impostor">
+        <h2 id="nombreImpostor"></h2>
+        <div class="row">
+            <button onclick="volverAJugar()">Volver a jugar</button>
+            <button onclick="volverPrincipal()">Volver al menú</button>
+            <button onclick="irConfiguracionSala()">Configuración de la sala</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
